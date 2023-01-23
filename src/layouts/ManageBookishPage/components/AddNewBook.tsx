@@ -123,7 +123,7 @@ export const AddNewBook = () =>{
                         </div>
                         <input type='file' onChange={e => base64ConversionForImages(e)}/>
                         <div>
-                            <button type='button' className='btn btn-primary mt-3' onClick={submitNewBook}>
+                            <button type='button' className='btn main-color text-white mt-3' onClick={submitNewBook}>
                                 Add Book
                             </button>
                         </div>

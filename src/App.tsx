@@ -3,6 +3,8 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { BookCheckoutPage } from './layouts/BookCheckoutPage/BookCheckoutPage';
 import { HomePage } from './layouts/HomePage/HomePage';
+import { Login } from './layouts/Login/Login';
+import { Signup } from './layouts/Login/Signup';
 import { ManageBookishPage } from './layouts/ManageBookishPage/ManageBookishPage';
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { Navbar } from './layouts/NavbarAndFooter/Navbar';
@@ -28,6 +30,12 @@ export const App = () => {
       </Route>
       <Route path='/admin'>
         <ManageBookishPage/>
+      </Route>
+      <Route path='/login'>
+        <Login/>
+      </Route>
+      <Route path='/signup'>
+        <Signup/>
       </Route>
       </Switch>
       </div>

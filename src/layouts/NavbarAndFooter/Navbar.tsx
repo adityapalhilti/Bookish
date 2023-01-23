@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 export const Navbar = () => {
     return(
     <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
       <div className='container-fluid'>
-        <span className='navbar-brand'>Bookish</span>
+        <img className='navbar-brand' src={require("./../../Images/logo.png")} width="110px" height="70px" alt="Bookish"></img>
         <button className='navbar-toggler' type='button'
           data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown'
           aria-controls='navbarNavDropdown' aria-expanded='false'
@@ -26,7 +26,7 @@ export const Navbar = () => {
           </ul>
           <ul className='navbar-nav ms-auto'>
               <li className='nav-item m-1'>
-                <a type='button' className='btn btn-outline-light' href='#'>Sign in</a>
+                <Link type='button' className='btn btn-outline-light'  to={"/login"}>Sign in</Link>
               </li>
           </ul>
         </div>

@@ -18,7 +18,7 @@
 }
 
 .main-color {
-background-color: #0e76a8 ;
+background-color: #D2051E ;
 }
 
 .col-image-left {
@@ -34,7 +34,7 @@ background-color: #0e76a8 ;
 .lost-image {
   background-image: url("./Images/PublicImages/image-3.jpg");
   height: 25em !important;
-  width: "720"
+  width: 350px;
 }
 
 .homepage-carousel-title {
@@ -51,4 +51,39 @@ background-color: #0e76a8 ;
 .inactiveLink {
   pointer-events: none;
   cursor: default;
+}
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 90px;
+  padding-bottom: 30px;
+}
+
+.Auth-form {
+  width: 40%;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
 }
