@@ -16,7 +16,7 @@ export const Signup=() =>{
             <input
               type="String"
               className="form-control mt-1"
-              placeholder="e.g Puneet Raj"
+              placeholder="e.g Aditya Pal"
             />
           </div>
           <div className="form-group mt-3">

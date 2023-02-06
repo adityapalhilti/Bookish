@@ -1,4 +1,5 @@
 import { useEffect , useState } from "react";
+import { Link } from "react-router-dom";
 import BookModel from "../../models/BookModel";
 import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
@@ -91,6 +92,11 @@ export const SearchBooksPage =() => {
             setSearchUrl('/search/findByTitleContaining?title='+search +'&page=0&size='+booksPerPage);
         }
     }
+    const handleKeyPress = (event: { key: string; }) => {
+        if(event.key === 'Enter'){
+          searchHandleChange();
+        }
+      }
     const categoryField = (value : string) => {
         if(
             value.toLowerCase()==='fe' ||
@@ -124,7 +130,7 @@ export const SearchBooksPage =() => {
                         <div className="d-flex">
                             <input className="form-control me-2" type='search'
                             placeholder="Search" aria-labelledby="Search"
-                            onChange={e => setSearch(e.target.value)}/>
+                            onChange={e => setSearch(e.target.value)} onKeyDown={handleKeyPress}/>
                             <button className="btn btn-outline-success" 
                                 onClick={()=> searchHandleChange()}>
                                 Search
@@ -185,10 +191,10 @@ export const SearchBooksPage =() => {
                     <h3>
                         Can't find what you are looking for?
                     </h3>
-                    <a type = 'button' className="btn main-color btn-md px-4 me-md-2 fw-bold text-white"
-                        href='#'>
+                    <Link type='button' className="btn main-color btn-md px-4 me-md-2 fw-bold text-white"
+                        onClick={() => { setSearch(''); setSearchUrl(''); } } to={"/search"} >
                             Bookish Services
-                        </a>
+                        </Link>
                 </div>
             }
 

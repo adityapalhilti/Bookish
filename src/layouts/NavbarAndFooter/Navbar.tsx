@@ -20,9 +20,7 @@ export const Navbar = () => {
             <li className='nav-item'>
               <NavLink className='nav-link' to={"/search"}>Explore</NavLink>
             </li>
-            <li className='nav-item'>
-              <NavLink className='nav-link' to={"/admin"}>Admin</NavLink>
-            </li>
+            
           </ul>
           <ul className='navbar-nav ms-auto'>
               <li className='nav-item m-1'>
