@@ -8,15 +8,13 @@ export const Login=()=>{
   const [password, setPassword] = useState("")
   const [active,setActive]=useState(false)
   
-  const login = async (username: String, password: any) => {
+  const login = async (event: React.FormEvent) => {
     
-    setTimeout(() => {
-      console.log("Entered in login")
-    }, 1000);
+    event.preventDefault();
     const response = await fetch('http://localhost:8080/login', {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ userName:username, password }),
     });
     console.log(response)
     const data = await response.json();
@@ -25,13 +23,13 @@ export const Login=()=>{
       token:data.token
     }))
     setActive(true);
-    alert("Successfully logged in");
   };
 
+  console.log("active value2-",active);
     return(
         !active?
         <div className="Auth-form-container" >
-        <form className="Auth-form " onSubmit={(event) => login(username, password)}>
+        <form className="Auth-form " onSubmit={login}>
           <div className="Auth-form-content">
               
             <div className="form-group mt-3">
