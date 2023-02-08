@@ -25,7 +25,7 @@ export const Login=()=>{
     setActive(true);
   };
 
-  console.log("active value2-",active);
+  
     return(
         !active?
         <div className="Auth-form-container" >
