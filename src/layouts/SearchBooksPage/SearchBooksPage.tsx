@@ -1,11 +1,13 @@
 import { useEffect , useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchBook } from "./components/SearchBook";
 
 export const SearchBooksPage =() => {
+    useAuth();
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);
     const [httpError , setHttpError]= useState(null);

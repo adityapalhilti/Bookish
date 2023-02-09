@@ -1,8 +1,10 @@
 import { useState } from "react"
+import useAuth from "../../Hook/UseAuth";
 import { AddNewBook } from "./components/AddNewBook";
 import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
 
 export const ManageBookishPage = () => {
+    useAuth();
     const [changeQuantityOfBooksClick , setChangeQuantityOfBooksClick] = useState(false);
 
     function addBookClickFunction(){

@@ -1,9 +1,11 @@
 import { render } from "@testing-library/react";
 import { useState } from "react";
+import useAuth from "../../../Hook/UseAuth";
 import AddBookRequest from "../../../models/AddBookRequest";
 
 export const AddNewBook = () =>{
 
+    useAuth();
     const[title,setTitle]=useState('');
     const[author , setAuthor]=useState('');
     const [description,setDescription]=useState('');

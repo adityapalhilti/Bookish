@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import useAuth from "../../../Hook/UseAuth";
 import BookModel from "../../../models/BookModel";
 import { Pagination } from "../../Utils/Pagination";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { ChangeQuantityOfBook } from "./ChangeQuantityOfBook";
 
 export const ChangeQuantityOfBooks = () => {
+    useAuth();
 
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);
