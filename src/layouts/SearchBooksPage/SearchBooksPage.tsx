@@ -1,13 +1,14 @@
+import axios from "axios";
 import { useEffect , useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../Hook/UseAuth";
+import authAxios from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchBook } from "./components/SearchBook";
 
 export const SearchBooksPage =() => {
-    useAuth();
+    //useAuth();
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);
     const [httpError , setHttpError]= useState(null);
@@ -33,16 +34,16 @@ export const SearchBooksPage =() => {
                 url=baseUrl + searchUrl;
             }
 
-            const response = await fetch(url);
-            if(!response.ok){
+            const response = await authAxios.get(url);
+            if(response.status!=200){
                 throw new Error('Something went wrong!');
             }
-            const responseJson = await response.json();
+            //const responseJson = await response.json();
 
-            const responseData = responseJson._embedded.books;
+            const responseData = response.data._embedded.books;
 
-            setTotalAmountOfBooks(responseJson.page.totalElements);
-            setTotalPages(responseJson.page.totalPages);
+            setTotalAmountOfBooks(response.data.page.totalElements);
+            setTotalPages(response.data.page.totalPages);
 
             const loadedBooks : BookModel[] =[];
 

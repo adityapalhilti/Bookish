@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import BookModel from "../../models/BookModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
@@ -17,23 +18,23 @@ export const BookCheckoutPage = () =>{
             const baseUrl: string = `http://localhost:8080/api/books/${bookId}`;
 
 
-            const response = await fetch(baseUrl);
+            const response = await axios(baseUrl);
 
-            if(!response.ok){
+            if(response.status!=200){
                 throw new Error('Something went wrong!');
             }
-            const responseJson = await response.json();
+            //const responseJson = await response.json();
 
 
             const loadedBook : BookModel ={
-                id:responseJson.id,
-                title: responseJson.title,
-                author: responseJson.author,
-                description : responseJson.description,
-                copies : responseJson.copies,
-                copiesAvailable : responseJson.copiesAvailable,
-                category : responseJson.category,
-                img : responseJson.img,
+                id:response.data.id,
+                title: response.data.title,
+                author: response.data.author,
+                description : response.data.description,
+                copies : response.data.copies,
+                copiesAvailable : response.data.copiesAvailable,
+                category : response.data.category,
+                img : response.data.img,
             };
 
             setBook(loadedBook);

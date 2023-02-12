@@ -1,11 +1,12 @@
 import { render } from "@testing-library/react";
+import axios from "axios";
 import { useState } from "react";
 import useAuth from "../../../Hook/UseAuth";
 import AddBookRequest from "../../../models/AddBookRequest";
 
 export const AddNewBook = () =>{
 
-    useAuth();
+    //useAuth();
     const[title,setTitle]=useState('');
     const[author , setAuthor]=useState('');
     const [description,setDescription]=useState('');
@@ -48,11 +49,11 @@ export const AddNewBook = () =>{
                 headers:{
                     'Content-Type':'application/json'
                 },
-                body:JSON.stringify(book)
+                data:JSON.stringify(book)
             };
 
-            const submitNewBookResponse = await fetch(url,requestOptions);
-            if(!submitNewBookResponse.ok){
+            const submitNewBookResponse = await axios(url,requestOptions);
+            if(submitNewBookResponse.status!=200){
                 throw new Error('Something went wrong!');
             }
             setTitle('');

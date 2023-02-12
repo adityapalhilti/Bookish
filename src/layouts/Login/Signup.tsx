@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,12 +11,12 @@ export const Signup=() =>{
   const signup = async (event: React.FormEvent)=>{
 
     event.preventDefault();
-    const response = await fetch('http://localhost:8080/signup',{
+    const response = await axios('http://localhost:8080/signup',{
       method: "POST",
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({userName:username ,password,name}),
+      data: JSON.stringify({userName:username ,password,name}),
     });
-    const data=await response.json();
+    
     alert("Sign up done");
   };
 

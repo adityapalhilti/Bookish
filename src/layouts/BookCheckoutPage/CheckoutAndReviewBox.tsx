@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BookModel from "../../models/BookModel";
@@ -22,8 +23,8 @@ export const CheckoutAndReviewBox : React.FC<{book:BookModel | undefined , mobil
                 'Content-Type':'application/json'
             }
         };
-        const quantityUpdateResponse = await fetch(url , requestOptions);
-        if(!quantityUpdateResponse.ok){
+        const quantityUpdateResponse = await axios(url , requestOptions);
+        if(quantityUpdateResponse.status!=200){
             throw new Error("Something went wrong!");
         }
 

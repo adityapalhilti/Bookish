@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import useAuth from "../../../Hook/UseAuth";
 
 export const Carousel = () => {
+    //useAuth();
 
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);
@@ -16,14 +19,14 @@ export const Carousel = () => {
 
             //const url : string = '${baseUrl}?page=0&size=9';
 
-            const response = await fetch(url);
+            const response = await axios(url);
 
-            if(!response.ok){
+            if(response.status!=200){
                 throw new Error('Something went wrong!');
             }
-            const responseJson = await response.json();
+            //const responseJson = await response.json();
 
-            const responseData = responseJson._embedded.books;
+            const responseData = response.data._embedded.books;
 
             const loadedBooks : BookModel[] =[];
 

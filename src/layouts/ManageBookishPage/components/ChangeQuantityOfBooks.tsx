@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../../../Hook/UseAuth";
 import BookModel from "../../../models/BookModel";
@@ -6,7 +7,7 @@ import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { ChangeQuantityOfBook } from "./ChangeQuantityOfBook";
 
 export const ChangeQuantityOfBooks = () => {
-    useAuth();
+    //useAuth();
 
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);
@@ -21,17 +22,17 @@ export const ChangeQuantityOfBooks = () => {
         const fetchBooks = async () => {
             let baseUrl: string = `http://localhost:8080/api/books?page=${currentPage -1}&size=${booksPerPage}`;
 
-            const response = await fetch(baseUrl);
+            const response = await axios(baseUrl);
 
-            if(!response.ok){
+            if(response.statusText!='OK'){
                 throw new Error('Something went wrong!');
             }
-            const responseJson = await response.json();
+            //const responseJson = await response.json();
 
-            const responseData = responseJson._embedded.books;
+            const responseData = response.data._embedded.books;
 
-            setTotalAmountOfBooks(responseJson.page.totalElements);
-            setTotalPages(responseJson.page.totalPages);
+            setTotalAmountOfBooks(response.data.page.totalElements);
+            setTotalPages(response.data.page.totalPages);
 
             const loadedBooks : BookModel[] =[];
 

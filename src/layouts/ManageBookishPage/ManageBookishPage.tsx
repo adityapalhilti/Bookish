@@ -4,7 +4,7 @@ import { AddNewBook } from "./components/AddNewBook";
 import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
 
 export const ManageBookishPage = () => {
-    useAuth();
+    //useAuth();
     const [changeQuantityOfBooksClick , setChangeQuantityOfBooksClick] = useState(false);
 
     function addBookClickFunction(){
