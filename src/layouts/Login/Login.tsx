@@ -19,10 +19,9 @@ export const Login=()=>{
     });
     console.log(response)
     
-    localStorage.setItem('active',JSON.stringify({
-      active:true,
-      token:response.data.token
-    }))
+    localStorage.setItem('token',JSON.stringify(
+      response.data.token
+    ))
     setActive(true);
   };
 

@@ -1,9 +1,9 @@
  import axios from 'axios';
  import { useEffect } from 'react';
 
- //const useAuth = () => {
+ const useAuth = () => {
   
-    //  const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
 
     //  const authAxios=axios.create({
     //     headers:{
@@ -11,11 +11,15 @@
     //     }
     //  })
     
-        // axios.interceptors.request.use(config => {
-        //   config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
+    console.log(token);
+    console.log(localStorage.getItem('token'))
+        axios.interceptors.request.use(config => {
+          config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
                 
-        //   return config;
-        // });
+          return config;
+        });
+    }
+    export default useAuth;
 
 //         // axios.interceptors.request.use((request)=>{
 //         //     request.headers.Authorization= `Bearer ${token}`;
@@ -40,45 +44,45 @@
       
     
  // };
- const token = localStorage.getItem('token');
+//  const token = localStorage.getItem('token');
 
- export const getToken = () => localStorage.getItem("token")
- ? (localStorage.getItem("token"))
- : null;
+//  export const getToken = () => localStorage.getItem("token")
+//  ? (localStorage.getItem("token"))
+//  : null;
 
-export const getAuthorizationHeader = () => `Bearer ${getToken()}`;
-
-
-     const authAxios=axios.create({
-        headers:{
-            Authorization :getAuthorizationHeader(),
-        },
-        withCredentials: true
-     });
+// export const getAuthorizationHeader = () => `Bearer ${getToken()}`;
 
 
-     const requestIntercept = authAxios.interceptors.request.use(
-        config => {
-            if (!config.headers['Authorization']) {
-                config.headers['Authorization'] = `Bearer ${token}`;
-            }
-            return config;
-        }, (error) => Promise.reject(error)
-    );
-    const responseIntercept = authAxios.interceptors.response.use(
-        response => response,
-        async (error) => {
-            const prevRequest = error?.config;
-            if (error?.response?.status === 403 && !prevRequest?.sent) {
-                prevRequest.sent = true;
-                //const newAccessToken = await refresh();
-                prevRequest.headers['Authorization'] = `Bearer ${token}`;
-                return authAxios(prevRequest);
-            }
-            return Promise.reject(error);
-        }
-    );
-export default authAxios;
+//      const authAxios=axios.create({
+//         headers:{
+//             Authorization :getAuthorizationHeader(),
+//         },
+//         withCredentials: true
+//      });
+
+
+//      const requestIntercept = authAxios.interceptors.request.use(
+//         config => {
+//             if (!config.headers['Authorization']) {
+//                 config.headers['Authorization'] = `Bearer ${token}`;
+//             }
+//             return config;
+//         }, (error) => Promise.reject(error)
+//     );
+//     const responseIntercept = authAxios.interceptors.response.use(
+//         response => response,
+//         async (error) => {
+//             const prevRequest = error?.config;
+//             if (error?.response?.status === 403 && !prevRequest?.sent) {
+//                 prevRequest.sent = true;
+//                 //const newAccessToken = await refresh();
+//                 prevRequest.headers['Authorization'] = `Bearer ${token}`;
+//                 return authAxios(prevRequest);
+//             }
+//             return Promise.reject(error);
+//         }
+//     );
+//export default authAxios;
 
 
 

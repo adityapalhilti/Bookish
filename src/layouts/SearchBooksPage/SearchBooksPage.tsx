@@ -1,14 +1,15 @@
 import axios from "axios";
 import { useEffect , useState } from "react";
 import { Link } from "react-router-dom";
-import authAxios from "../../Hook/UseAuth";
+import useAuth from "../../Hook/UseAuth";
+import  authAxios  from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchBook } from "./components/SearchBook";
 
 export const SearchBooksPage =() => {
-    //useAuth();
+    useAuth();
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);
     const [httpError , setHttpError]= useState(null);
@@ -34,7 +35,7 @@ export const SearchBooksPage =() => {
                 url=baseUrl + searchUrl;
             }
 
-            const response = await authAxios.get(url);
+            const response = await axios(url);
             if(response.status!=200){
                 throw new Error('Something went wrong!');
             }
