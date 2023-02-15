@@ -11,7 +11,7 @@ export const Signup=() =>{
   const signup = async (event: React.FormEvent)=>{
 
     event.preventDefault();
-    const response = await axios('http://localhost:8080/signup',{
+    const response = await axios(`${process.env.REACT_APP_HOST}/signup`,{
       method: "POST",
       headers:{'Content-Type':'application/json'},
       data: JSON.stringify({userName:username ,password,name}),

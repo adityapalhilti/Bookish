@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import useAuth from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { StarsReview } from "../Utils/StarsReview";
 import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
 
 export const BookCheckoutPage = () =>{
+    //useAuth();
     
     const[book,setBook]= useState<BookModel>();
     const[isLoading , setIsLoading] = useState(true);
@@ -15,7 +17,7 @@ export const BookCheckoutPage = () =>{
     
     useEffect(() =>{
         const fetchBook = async () => {
-            const baseUrl: string = `http://localhost:8080/api/books/${bookId}`;
+            const baseUrl: string = `${process.env.REACT_APP_HOST}/api/books/${bookId}`;
 
 
             const response = await axios(baseUrl);

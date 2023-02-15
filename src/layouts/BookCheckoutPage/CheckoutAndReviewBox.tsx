@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 
 export const CheckoutAndReviewBox : React.FC<{book:BookModel | undefined , mobile : boolean }> = (props) => {
+    //useAuth();
 
     const [quantity,setQuantity]=useState<number>(0);
     const[remaining ,setRemaining]=useState<number>(0);
@@ -15,7 +17,7 @@ export const CheckoutAndReviewBox : React.FC<{book:BookModel | undefined , mobil
       }
 
     async function decreaseQuantity() {
-        const url=`http://localhost:8080/api/admin/decrease/book/quantity/?bookId=${props.book?.id}`;
+        const url=`${process.env.REACT_APP_HOST}/api/admin/decrease/book/quantity/?bookId=${props.book?.id}`;
 
         const requestOptions = {
             method: "PUT",

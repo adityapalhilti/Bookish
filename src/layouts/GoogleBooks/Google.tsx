@@ -15,7 +15,7 @@ function Google() {
     }  
     function handleSubmit(event: { preventDefault: () => void; }) {  
         event.preventDefault();  
-        axios.get("http://localhost:8080/api/admin/googlebooks/java")  
+        axios.get(`${process.env.REACT_APP_HOST}/api/admin/googlebooks/java`)  
             .then(data => {  
                 console.log(data.data.items);  
                 setResult(data.data.items);  
