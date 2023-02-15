@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom"
+import { SignInButton } from "./components/SignInButton"
 
 export const Navbar = () => {
     return(
@@ -21,11 +22,13 @@ export const Navbar = () => {
               <NavLink className='nav-link' to={"/search"}>Explore</NavLink>
             </li>
             
+            <li className='nav-item'>
+              <NavLink className='nav-link' to={"/admin"}>Admin</NavLink>
+            </li>
+            
           </ul>
           <ul className='navbar-nav ms-auto'>
-              <li className='nav-item m-1'>
-                <Link type='button' className='btn btn-outline-light'  to={"/login"}>Sign in</Link>
-              </li>
+              <SignInButton/>
           </ul>
         </div>
       </div>

@@ -17,11 +17,8 @@ export const Login=()=>{
       headers: { 'Content-Type': 'application/json' },
       data: JSON.stringify({ userName:username, password }),
     });
-    console.log(response)
     
-    localStorage.setItem('token',JSON.stringify(
-      response.data.token
-    ))
+    localStorage.setItem('token',response.data.token)
     setActive(true);
   };
 
