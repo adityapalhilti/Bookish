@@ -7,7 +7,7 @@ import axios from "axios";
 import useAuth from "../../../Hook/UseAuth";
 
 export const Carousel = () => {
-    //useAuth();
+    useAuth();
 
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);

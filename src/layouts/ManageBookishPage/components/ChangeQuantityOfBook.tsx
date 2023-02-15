@@ -4,7 +4,7 @@ import useAuth from "../../../Hook/UseAuth";
 import BookModel from "../../../models/BookModel";
 
 export const ChangeQuantityOfBook: React.FC<{book : BookModel , deleteBook:any } > = (props,key) => {
-    //useAuth();
+    useAuth();
     const [quantity,setQuantity]=useState<number>(0);
     const[remaining ,setRemaining]=useState<number>(0);
 

@@ -5,7 +5,7 @@ import useAuth from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 
 export const CheckoutAndReviewBox : React.FC<{book:BookModel | undefined , mobile : boolean }> = (props) => {
-    //useAuth();
+    useAuth();
 
     const [quantity,setQuantity]=useState<number>(0);
     const[remaining ,setRemaining]=useState<number>(0);

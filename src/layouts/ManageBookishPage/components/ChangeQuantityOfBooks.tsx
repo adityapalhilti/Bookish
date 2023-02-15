@@ -7,7 +7,7 @@ import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { ChangeQuantityOfBook } from "./ChangeQuantityOfBook";
 
 export const ChangeQuantityOfBooks = () => {
-    //useAuth();
+    useAuth();
 
     const [books ,setBooks] = useState<BookModel[]>([]);
     const [isLoading , setIsLoading]= useState(true);

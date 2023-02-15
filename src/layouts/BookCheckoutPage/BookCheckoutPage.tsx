@@ -7,7 +7,7 @@ import { StarsReview } from "../Utils/StarsReview";
 import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
 
 export const BookCheckoutPage = () =>{
-    //useAuth();
+    useAuth();
     
     const[book,setBook]= useState<BookModel>();
     const[isLoading , setIsLoading] = useState(true);

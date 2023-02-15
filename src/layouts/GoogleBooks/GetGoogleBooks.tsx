@@ -4,7 +4,7 @@ import useAuth from "../../Hook/UseAuth";
 import { axiosPrivate } from "../Utils/axios"
 
 const GetGoogleBooks=async(searchid: any)=>{
-        //useAuth();
+        useAuth();
     try {
             const response= await axiosPrivate.get('/googlebooks/'+searchid)
             const NewBooksList =response.data
