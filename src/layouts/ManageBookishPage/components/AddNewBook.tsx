@@ -6,7 +6,7 @@ import AddBookRequest from "../../../models/AddBookRequest";
 
 export const AddNewBook = () =>{
 
-    //useAuth();
+    useAuth();
     const[title,setTitle]=useState('');
     const[author , setAuthor]=useState('');
     const [description,setDescription]=useState('');

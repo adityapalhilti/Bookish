@@ -5,8 +5,10 @@ export const SignInButton = () =>{
     const logout = async (event: React.FormEvent) => {
     
         event.preventDefault();
+        window.location.reload();
         localStorage.removeItem('token');
       };
+      
 
 
     return(

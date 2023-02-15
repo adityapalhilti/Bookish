@@ -6,7 +6,7 @@ export const HomePage = () => {
     return(
         <>
         <ExploreTopBooks/>
-        <Carousel/>
+        
         <BookishServices/>
         </>
     );
