@@ -1,5 +1,6 @@
 import { useState } from "react"
 import useAuth from "../../Hook/UseAuth";
+import GoogleBooks from "../GoogleBooks/GoogleBooks";
 import { AddNewBook } from "./components/AddNewBook";
 import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
 
@@ -31,6 +32,11 @@ export const ManageBookishPage = () => {
                             aria-selected='true'>
                                 Change Quantity
                         </button>
+                        <button   className="nav-link" id='nav-google-book-tab' data-bs-toggle='tab'
+                            data-bs-target='#nav-google-book' type='button' role='tab' aria-controls='nav-google-book'
+                            aria-selected='false'>
+                                GoogleBooks
+                        </button>
 
                     </div>
                 </nav>
@@ -41,6 +47,10 @@ export const ManageBookishPage = () => {
                     </div>
                     <div className='tab-pane fade' id='nav-quantity' role='tabpanel' aria-labelledby="nav-quantity-tab">
                         {changeQuantityOfBooksClick ? <ChangeQuantityOfBooks/> : <></>}
+                    </div>
+                    <div className='tab-pane fade ' id='nav-google-book' role='tabpanel'
+                        aria-labelledby='nav-google-book-tab'>
+                            <GoogleBooks/>
                     </div>
 
                 </div>

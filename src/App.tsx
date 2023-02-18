@@ -9,7 +9,7 @@ import { ManageBookishPage } from './layouts/ManageBookishPage/ManageBookishPage
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
-import Google from './layouts/GoogleBooks/Google';
+
 
 
 
@@ -32,9 +32,6 @@ export const App = () => {
       </Route>
       <Route path='/search'>
         <SearchBooksPage/>
-      </Route>
-      <Route path='/google'>
-        <Google/>
       </Route>
       <Route path='/checkout/:bookId'>
         <BookCheckoutPage/>

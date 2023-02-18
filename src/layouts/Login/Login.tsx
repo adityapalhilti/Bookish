@@ -2,12 +2,14 @@ import axios from 'axios';
 import React, { useDebugValue, useState } from'react'
 import { Link } from 'react-router-dom';
 import { HomePage } from '../HomePage/HomePage';
+//import { useNavigate, useLocation, Navigate } from "react-router";
 
 export const Login=()=>{
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [active,setActive]=useState(false)
+  //const navigate =useNavigate();
   
   const login = async (event: React.FormEvent) => {
     
@@ -22,7 +24,6 @@ export const Login=()=>{
     setActive(true);
   };
 
-  
     return(
         !active?
         <div className="Auth-form-container" >
