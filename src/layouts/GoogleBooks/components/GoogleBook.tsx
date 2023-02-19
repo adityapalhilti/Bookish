@@ -69,6 +69,14 @@ export const GoogleBook: React.FC<{ book : BookModel }> = (props) => {
         }
     }
 
+    async function handleOnClick(){
+        setAuthor(`${props.book.author}`);
+        setTitle(`${props.book.title}`);
+        setDescription(`${props.book.description}`) ;
+        submitNewBook();
+
+    }
+
     return (
         <div className="card mt-3 shadow p-3 mb-3 bg-body rounded">
             {
@@ -140,7 +148,7 @@ export const GoogleBook: React.FC<{ book : BookModel }> = (props) => {
                                     <li><a onClick={() => categoryField('DevOps')} className='dropdown-item'>DevOps</a></li>
                                 </ul>
                         </div>
-                       <button className="btn btn-md main-color text-white" onClick={()=>{setAuthor(`${props.book.author}`);setTitle(`${props.book.title}`);setDescription(`${props.book.description}`) ; submitNewBook}}>
+                       <button className="btn btn-md main-color text-white" onClick={handleOnClick}>
                             Add Book
                        </button>
                 </div>    

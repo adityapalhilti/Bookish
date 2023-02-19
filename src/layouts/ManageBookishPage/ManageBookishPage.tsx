@@ -1,6 +1,6 @@
 import { useState } from "react"
 import useAuth from "../../Hook/UseAuth";
-import GoogleBooks from "../GoogleBooks/GoogleBooks";
+import {GoogleBooks} from "../GoogleBooks/GoogleBooks";
 import { AddNewBook } from "./components/AddNewBook";
 import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
 

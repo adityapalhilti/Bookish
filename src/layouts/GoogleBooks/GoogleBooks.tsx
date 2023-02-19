@@ -11,7 +11,7 @@ import BookModel from "../../models/BookModel";
 import { Link } from "react-router-dom";
 import { GoogleBook } from "./components/GoogleBook";
 
- export const GoogleBooks=async()=> {  
+ export const GoogleBooks=()=> {  
     useAuth();
     const [books ,setBooks] = useState<BookModel[]>([]);  
     const [result, setResult] = useState([]);  
@@ -87,7 +87,7 @@ import { GoogleBook } from "./components/GoogleBook";
         
     }
     
-    return <> (  
+    return (<div>   
         
         <form >  
             <div className="card-header main-search">  
@@ -120,7 +120,8 @@ import { GoogleBook } from "./components/GoogleBook";
                 </div>
             }
         </form> 
-    )  </>
+      </div>
+      )
 }  
   
 export default GoogleBooks;
