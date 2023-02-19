@@ -6,7 +6,8 @@ export const SignInButton = () =>{
     
         event.preventDefault();
         window.location.reload();
-        localStorage.removeItem('token');
+        window.localStorage.clear();
+        
       };
       
     

@@ -2,17 +2,17 @@ import axios from 'axios';
 import React, { useDebugValue, useState } from'react'
 import { Link } from 'react-router-dom';
 import { HomePage } from '../HomePage/HomePage';
-//import { useNavigate, useLocation, Navigate } from "react-router";
 
 export const Login=()=>{
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [active,setActive]=useState(false)
-  //const navigate =useNavigate();
+  
   
   const login = async (event: React.FormEvent) => {
     
+
     event.preventDefault();
     const response = await axios(`${process.env.REACT_APP_HOST}/login`, {
       method: "POST",
@@ -20,12 +20,12 @@ export const Login=()=>{
       data: JSON.stringify({ userName:username, password }),
     });
     
-    localStorage.setItem('token',response.data.token)
+    localStorage.setItem('token',response.data.token);
+    localStorage.setItem('username',username);
     setActive(true);
   };
 
     return(
-        !active?
         <div className="Auth-form-container" >
         <form className="Auth-form " onSubmit={login}>
           <div className="Auth-form-content">
@@ -71,8 +71,6 @@ export const Login=()=>{
           </div>
         </form>
       </div>
-      :
-      <h1>Hi</h1>
       
       
     );

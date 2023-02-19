@@ -9,7 +9,6 @@ export const ErrorPage = () =>{
               <div>
                 <h2>
                     You are not authorised to view this page.
-                    Please Login to view.
                 </h2>
               </div>
     );

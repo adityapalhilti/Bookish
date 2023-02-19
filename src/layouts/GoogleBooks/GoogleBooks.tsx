@@ -10,7 +10,8 @@ import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import BookModel from "../../models/BookModel";
 import { Link } from "react-router-dom";
 import { GoogleBook } from "./components/GoogleBook";
-function GoogleBooks() {  
+
+ export const GoogleBooks=async()=> {  
     useAuth();
     const [books ,setBooks] = useState<BookModel[]>([]);  
     const [result, setResult] = useState([]);  
@@ -86,9 +87,8 @@ function GoogleBooks() {
         
     }
     
-    return (  
+    return <> (  
         
-    
         <form >  
             <div className="card-header main-search">  
                 <div className="row">  
@@ -105,7 +105,8 @@ function GoogleBooks() {
                 </div>  
             </div>  
             
-            {   active?
+            { 
+                active?
                 <>
                 {books.map(book=>(
                     <GoogleBook book ={book} key={book.id}/>
@@ -119,8 +120,7 @@ function GoogleBooks() {
                 </div>
             }
         </form> 
-  
-    )  
+    )  </>
 }  
   
-export default GoogleBooks
+export default GoogleBooks;
