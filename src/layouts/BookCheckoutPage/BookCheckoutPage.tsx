@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import useAuth from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
@@ -63,9 +64,17 @@ export const BookCheckoutPage = () =>{
             </div>
         )
     }
+    if(!localStorage.getItem("token"))
+    {
+        <Redirect to="/login"/>
+    }
 
     return(
-        <div>
+        <>
+        {
+            localStorage.getItem("token")?
+           
+            <div>
             <div className="container d-none d-lg-block">
                 <div className="row mt-5">
                     <div className="col-sm-2 col-md-2">
@@ -109,5 +118,11 @@ export const BookCheckoutPage = () =>{
                 <hr/>
             </div>
         </div>
+        :
+        <Redirect to="/login"/>
+    }
+    </>
+        
+    
     );
 }

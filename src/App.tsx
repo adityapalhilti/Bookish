@@ -2,13 +2,15 @@ import React from 'react';
 import { Redirect, Route, Switch ,useHistory } from 'react-router-dom';
 import './App.css';
 import { BookCheckoutPage } from './layouts/BookCheckoutPage/BookCheckoutPage';
+import { ErrorPage } from './layouts/ErrorPage/ErrorPage';
 import { HomePage } from './layouts/HomePage/HomePage';
 import { Login } from './layouts/Login/Login';
 import { Signup } from './layouts/Login/Signup';
 import { ManageBookishPage } from './layouts/ManageBookishPage/ManageBookishPage';
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { Navbar } from './layouts/NavbarAndFooter/Navbar';
-import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
+import { Explore } from './layouts/SearchBooksPage/Explore';
+
 
 
 
@@ -25,13 +27,13 @@ export const App = () => {
       <div className='flex-grow-1'>
       <Switch>
       <Route path='/' exact>
-        <Redirect to='/home'/>
+        <Redirect to='/login'/>
       </Route>
       <Route path='/home'>
         <HomePage/>
       </Route>
       <Route path='/search'>
-        <SearchBooksPage/>
+        <Explore/>
       </Route>
       <Route path='/checkout/:bookId'>
         <BookCheckoutPage/>
@@ -44,6 +46,9 @@ export const App = () => {
       </Route>
       <Route path='/signup'>
         <Signup/>
+      </Route>
+      <Route path='/error'>
+        <ErrorPage/>
       </Route>
       </Switch>
       </div>

@@ -37,6 +37,11 @@ background-color: #D2051E ;
   width: 350px;
 }
 
+.error-image{
+  background-image: url("./Images/PublicImages/error.png");
+  height: 25em !important;
+  width: 350px;
+}
 .homepage-carousel-title {
   display: flex !important;
   justify-content: center !important;

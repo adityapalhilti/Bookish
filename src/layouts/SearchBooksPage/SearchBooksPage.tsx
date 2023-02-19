@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect , useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import useAuth from "../../Hook/UseAuth";
-import  authAxios  from "../../Hook/UseAuth";
 import BookModel from "../../models/BookModel";
 import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
@@ -126,7 +125,9 @@ export const SearchBooksPage =() => {
 
     const paginate = (pageNumber : number) => setCurrentPage(pageNumber);
 
+    
     return (
+         
         <div>
             <div className="container">
                 <div className="row mt-5">
@@ -207,6 +208,10 @@ export const SearchBooksPage =() => {
                 }
             </div>
         </div>
+        
+        
+    
+        
 
     );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Redirect } from "react-router-dom";
 import useAuth from "../../Hook/UseAuth";
 import {GoogleBooks} from "../GoogleBooks/GoogleBooks";
 import { AddNewBook } from "./components/AddNewBook";
@@ -7,15 +8,34 @@ import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
 export const ManageBookishPage = () => {
     useAuth();
     const [changeQuantityOfBooksClick , setChangeQuantityOfBooksClick] = useState(false);
+    const [googleClick, setGoogleClick] = useState(false);
 
-    function addBookClickFunction(){
+    function addBookClickFunction() {
         setChangeQuantityOfBooksClick(false);
-    }
-    function changeQuantityOfBooksClickFunction(){
-        setChangeQuantityOfBooksClick(true);
+        setGoogleClick(false);
     }
 
+    function changeQuantityOfBooksClickFunction() {
+        setChangeQuantityOfBooksClick(true);
+        setGoogleClick(false);
+    }
+
+    function googleClickFunction() {
+        setChangeQuantityOfBooksClick(false);
+        setGoogleClick(true);
+    }
+
+    if(localStorage.getItem("username")!="admin@admin.com")
+    {   
+        <Redirect to="/home"/>
+    }
     return (
+        <>
+        {
+            localStorage.getItem("username")!="admin@admin.com"?
+            <Redirect to="/error"/>
+            :
+            
         <div className="container">
             <div className="mt-5">
                 <h3>Manage Bookish</h3>
@@ -32,10 +52,11 @@ export const ManageBookishPage = () => {
                             aria-selected='true'>
                                 Change Quantity
                         </button>
-                        <button   className="nav-link" id='nav-google-book-tab' data-bs-toggle='tab'
-                            data-bs-target='#nav-google-book' type='button' role='tab' aria-controls='nav-google-book'
-                            aria-selected='false'>
-                                GoogleBooks
+                        <button onClick={googleClickFunction} className='nav-link' id='nav-messages-tab' data-bs-toggle='tab' 
+                            data-bs-target='#nav-messages' type='button' role='tab' aria-controls='nav-messages' 
+                            aria-selected='false'
+                        >
+                            Google Books
                         </button>
 
                     </div>
@@ -48,13 +69,14 @@ export const ManageBookishPage = () => {
                     <div className='tab-pane fade' id='nav-quantity' role='tabpanel' aria-labelledby="nav-quantity-tab">
                         {changeQuantityOfBooksClick ? <ChangeQuantityOfBooks/> : <></>}
                     </div>
-                    <div className='tab-pane fade ' id='nav-google-book' role='tabpanel'
-                        aria-labelledby='nav-google-book-tab'>
-                            <GoogleBooks/>
+                    <div className='tab-pane fade' id='nav-messages' role='tabpanel' aria-labelledby='nav-messages-tab'>
+                        {googleClick ? <GoogleBooks/> : <></>}
                     </div>
 
                 </div>
             </div>
         </div>
+        
+}</>
     )
 }

@@ -10,8 +10,8 @@ export const BookishServices = () => {
                     </h2>
                     
                     <div className="d-grid gap-2 justify-content-md-start mb-4 mb-lg-3">
-                        <Link className="btn main-color btn-lg text-white" to={"/signup"}>
-                            Sign up
+                        <Link className="btn main-color btn-lg text-white" to={"/search"}>
+                            Search here
                         </Link>
                     </div>
                 </div>

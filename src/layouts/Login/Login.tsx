@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useDebugValue, useState } from'react'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { HomePage } from '../HomePage/HomePage';
 
 export const Login=()=>{
@@ -22,10 +22,23 @@ export const Login=()=>{
     
     localStorage.setItem('token',response.data.token);
     localStorage.setItem('username',username);
+
     setActive(true);
+    <Redirect to="/home"/>
+    window.location.reload();
   };
 
+  if(!localStorage.getItem("token"))
+    {
+        <Redirect to="/login"/>
+    }
+
     return(
+      <>
+      {
+        localStorage.getItem("token")?
+        <Redirect to="/home"/>
+        :
         <div className="Auth-form-container" >
         <form className="Auth-form " onSubmit={login}>
           <div className="Auth-form-content">
@@ -71,7 +84,8 @@ export const Login=()=>{
           </div>
         </form>
       </div>
-      
+}
+</>
       
     );
 }

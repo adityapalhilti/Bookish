@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export const Signup=() =>{
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
+  const [active,setActive]=useState(false)
 
-  const signup = async (event: React.FormEvent)=>{
+  async function signup (){
 
-    event.preventDefault();
+    //event.preventDefault();
     const response = await axios(`${process.env.REACT_APP_HOST}/signup`,{
       method: "POST",
       headers:{'Content-Type':'application/json'},
@@ -19,11 +20,43 @@ export const Signup=() =>{
     
     alert("Sign up done");
   };
+  
+  
+  async function login  ()  {
+    
 
+    //event.preventDefault();
+    const response = await axios(`${process.env.REACT_APP_HOST}/login`, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify({ userName:username, password }),
+    });
+    
+    localStorage.setItem('token',response.data.token);
+    localStorage.setItem('username',username);
+
+    setActive(true);
+    <Redirect to="/home"/>
+    window.location.reload();
+  };
+  async function handleOnClick(){
+    signup();
+    login();
+  }
+
+  if(!localStorage.getItem("token"))
+    {
+        <Redirect to="/login"/>
+    }
 
     return(
+      <>
+      {
+        localStorage.getItem("token")?
+        <Redirect to="/home"/>
+        :
         <div className="Auth-form-container">
-      <form className="Auth-form" onSubmit={signup}>
+      <form className="Auth-form" onSubmit={handleOnClick}>
         <div className="Auth-form-content">
           <div className="text-center">
             Already registered?{" "}
@@ -73,5 +106,6 @@ export const Signup=() =>{
         </div>
       </form>
     </div>
+}</>
     );
 }
