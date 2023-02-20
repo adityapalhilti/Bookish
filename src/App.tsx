@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch ,useHistory } from 'react-router-dom';
 import './App.css';
 import { BookCheckoutPage } from './layouts/BookCheckoutPage/BookCheckoutPage';
+import { Checkout } from './layouts/BookCheckoutPage/Checkout';
 import { ErrorPage } from './layouts/ErrorPage/ErrorPage';
 import { HomePage } from './layouts/HomePage/HomePage';
 import { Login } from './layouts/Login/Login';
@@ -36,7 +37,7 @@ export const App = () => {
         <Explore/>
       </Route>
       <Route path='/checkout/:bookId'>
-        <BookCheckoutPage/>
+        <Checkout/>
       </Route>
       <Route path='/admin'>
         <ManageBookishPage/>
