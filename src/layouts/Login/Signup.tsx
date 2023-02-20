@@ -9,14 +9,15 @@ export const Signup=() =>{
   const [name, setName] = useState("")
   const [active,setActive]=useState(false)
 
-  async function signup (){
+  const signup = async (event: React.FormEvent) =>{
 
-    //event.preventDefault();
+    event.preventDefault();
     const response = await axios(`${process.env.REACT_APP_HOST}/signup`,{
       method: "POST",
       headers:{'Content-Type':'application/json'},
       data: JSON.stringify({userName:username ,password,name}),
     });
+    
     
     const response1 = await axios(`${process.env.REACT_APP_HOST}/login`, {
       method: "POST",
@@ -31,34 +32,6 @@ export const Signup=() =>{
     <Redirect to="/home"/>
     window.location.reload();
   };
-  
-  
-  async function login  ()  {
-    
-
-    //event.preventDefault();
-    const response = await axios(`${process.env.REACT_APP_HOST}/login`, {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      data: JSON.stringify({ userName:username, password }),
-    });
-    
-    localStorage.setItem('token',response.data.token);
-    localStorage.setItem('username',username);
-
-    setActive(true);
-    <Redirect to="/home"/>
-    window.location.reload();
-  };
-  async function handleOnClick(){
-    signup();
-
-  }
-
-  if(!localStorage.getItem("token"))
-    {
-        <Redirect to="/login"/>
-    }
 
     return(
       <>
