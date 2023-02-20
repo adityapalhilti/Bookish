@@ -24,7 +24,7 @@ export const Login=()=>{
     localStorage.setItem('username',username);
 
     setActive(true);
-    <Redirect to="/home"/>
+    
     window.location.reload();
   };
 
