@@ -18,7 +18,18 @@ export const Signup=() =>{
       data: JSON.stringify({userName:username ,password,name}),
     });
     
-    alert("Sign up done");
+    const response1 = await axios(`${process.env.REACT_APP_HOST}/login`, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify({ userName:username, password }),
+    });
+    
+    localStorage.setItem('token',response1.data.token);
+    localStorage.setItem('username',username);
+
+    setActive(true);
+    <Redirect to="/home"/>
+    window.location.reload();
   };
   
   
@@ -41,7 +52,7 @@ export const Signup=() =>{
   };
   async function handleOnClick(){
     signup();
-    login();
+
   }
 
   if(!localStorage.getItem("token"))
@@ -56,7 +67,7 @@ export const Signup=() =>{
         <Redirect to="/home"/>
         :
         <div className="Auth-form-container">
-      <form className="Auth-form" onSubmit={handleOnClick}>
+      <form className="Auth-form" onSubmit={signup}>
         <div className="Auth-form-content">
           <div className="text-center">
             Already registered?{" "}
