@@ -4,9 +4,9 @@ import GoogleBooksReducer from "./reducers/GooglebooksSlice"
 
 
 export const store =configureStore({
-    reducer:({
+    reducer:{
         
-        googlebooks:GoogleBooksReducer
-      })
+        googlebooks:GoogleBooksReducer,
+      },
     
 })

@@ -7,27 +7,31 @@ import { ChangeQuantityOfBooks } from "./components/ChangeQuantityOfBooks";
 
 export const ManageBookishPage = () => {
     useAuth();
+    const[addBook,setAddBook]=useState(true);
     const [changeQuantityOfBooksClick , setChangeQuantityOfBooksClick] = useState(false);
     const [googleClick, setGoogleClick] = useState(false);
 
     function addBookClickFunction() {
         setChangeQuantityOfBooksClick(false);
         setGoogleClick(false);
+        setAddBook(true);
     }
 
     function changeQuantityOfBooksClickFunction() {
         setChangeQuantityOfBooksClick(true);
         setGoogleClick(false);
+        setAddBook(false);
     }
 
     function googleClickFunction() {
         setChangeQuantityOfBooksClick(false);
         setGoogleClick(true);
+        setAddBook(false);
     }
 
     if(localStorage.getItem("username")!="admin@admin.com")
     {   
-        <Redirect to="/home"/>
+        <Redirect to="/error"/>
     }
     return (
         <>
@@ -54,8 +58,7 @@ export const ManageBookishPage = () => {
                         </button>
                         <button onClick={googleClickFunction} className='nav-link' id='nav-messages-tab' data-bs-toggle='tab' 
                             data-bs-target='#nav-messages' type='button' role='tab' aria-controls='nav-messages' 
-                            aria-selected='false'
-                        >
+                            aria-selected='false'>
                             Google Books
                         </button>
 
@@ -64,7 +67,7 @@ export const ManageBookishPage = () => {
                 <div className='tab-content' id='nav-tabContent'>
                     <div className='tab-pane fade show active' id='nav-add-book' role='tabpanel'
                         aria-labelledby='nav-add-book-tab'>
-                            <AddNewBook/>
+                            {addBook ? <AddNewBook/> : <></>}
                     </div>
                     <div className='tab-pane fade' id='nav-quantity' role='tabpanel' aria-labelledby="nav-quantity-tab">
                         {changeQuantityOfBooksClick ? <ChangeQuantityOfBooks/> : <></>}

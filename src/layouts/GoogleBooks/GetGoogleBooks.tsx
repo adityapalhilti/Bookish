@@ -12,7 +12,6 @@ import { setGoogleBooks } from "../../Store/reducers/GooglebooksSlice";
           method: "GET",
           headers: { 'Content-Type': 'application/json' }
         });
-        console.log("Hitting Google Api Successfully")
         const NewBooksList =response.data
 
             return (NewBooksList);

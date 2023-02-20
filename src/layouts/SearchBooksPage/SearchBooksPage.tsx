@@ -38,9 +38,11 @@ export const SearchBooksPage =() => {
             if(response.status!=200){
                 throw new Error('Something went wrong!');
             }
-            //const responseJson = await response.json();
+            
 
             const responseData = response.data._embedded.books;
+            console.log("responseData:")
+            console.log(responseData);
 
             setTotalAmountOfBooks(response.data.page.totalElements);
             setTotalPages(response.data.page.totalPages);

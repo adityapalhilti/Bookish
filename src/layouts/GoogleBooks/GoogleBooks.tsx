@@ -10,27 +10,32 @@ import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import BookModel from "../../models/BookModel";
 import { Link } from "react-router-dom";
 import { GoogleBook } from "./components/GoogleBook";
+import GetGoogleBooks from "./GetGoogleBooks";
 
  export const GoogleBooks=()=> {  
     useAuth();
     const [books ,setBooks] = useState<BookModel[]>([]);  
     const [result, setResult] = useState([]);  
     const [search,setSearch]=useState(""); 
-    const [isLoading , setIsLoading]= useState(true);
+    const [isLoading , setIsLoading]= useState(false);
     const [httpError , setHttpError]= useState(null);
     const[active,setActive]=useState(false);
 
     const dispatch=useDispatch();
 
-    const responseData = useSelector(showgoogleBooks);
-    
-    useEffect(() =>{
+    let responseData = useSelector(showgoogleBooks);
+    let loadedBooks : BookModel[] =[];
 
-        const fetchBooks = async () => {
+    const fetchBooks = async () => {
 
+        
+        // dispatch(setGoogleBooks(GetGoogleBooks(search)));
+        GetGoogleBooks(search)
+        .then(result => {
+            console.log("result");
+            console.log(result);
+            responseData=result;
             
-
-            const loadedBooks : BookModel[] =[];
 
             for(const key in responseData){
                 loadedBooks.push({
@@ -42,20 +47,18 @@ import { GoogleBook } from "./components/GoogleBook";
                     copiesAvailable : responseData[key].copiesAvailable,
                     category : responseData[key].category,
                     img : responseData[key].img,
-
+    
                 });
             }
-
             setBooks(loadedBooks);
             setIsLoading(false);
-            setActive(true);           
-        };
-        fetchBooks().catch((error: any) => {
-            setIsLoading(false);
-            setHttpError(error.message);
-        })
-        
-    }, [] );
+            setActive(true); 
+          })
+          .catch(error => {
+            // handle the error
+          });
+               
+    };
 
     if(isLoading){
         return (
@@ -72,39 +75,41 @@ import { GoogleBook } from "./components/GoogleBook";
             </div>
         )
     }
-  
-    const handleKeyPress = (event: { key: string; }) => {
-        if(event.key === 'Enter'){
-          searchHandleChange();
-        }
-      }
 
-    const searchHandleChange = () => {
+    const searchHandleChange = async (event: React.FormEvent) => {
+        event.preventDefault();
         if(search!=''){
+            
+            setIsLoading(true);
+            
             fetchGoogleBooks(search);
-            setIsLoading(false)
+            
+            setIsLoading(false);
+            
+            fetchBooks();
+            
         }
         
     }
     
     return (<div>   
         
-        <form >  
+        <form className="mt-3" onSubmit={searchHandleChange}>  
             <div className="card-header main-search">  
                 <div className="row">  
                     <div className="col-12 col-md-3 col-xl-3">  
                         <input className="AutoFocus form-control" placeholder="Type something..." type="text" 
                             value={search}
-                            onChange={(e) => setSearch(e.target.value)} onKeyDown={handleKeyPress}/>  
+                            onChange={(e) => setSearch(e.target.value)} />  
                     </div>  
                     <div className="d-grid gap-2 mt-3">  
-                        <button type="submit" className="btn main-color text-white me-auto" onClick={()=> searchHandleChange()} >
+                        <button type="submit" className="btn main-color text-white me-auto"  >
                             Submit
                         </button>  
                     </div>  
                 </div>  
             </div>  
-            
+            </form>  
             { 
                 active?
                 <>
@@ -113,13 +118,12 @@ import { GoogleBook } from "./components/GoogleBook";
                 ))}
                 </>
                 :
-                <div className="m-5">
-                    <h3>
-                        Search over the Google Books store to add the book
-                    </h3>
+                
+                <div className="alert alert-primary mt-5" role="alert">
+                Search over the Google Books store to add some more knowledge...
                 </div>
             }
-        </form> 
+        
       </div>
       )
 }  

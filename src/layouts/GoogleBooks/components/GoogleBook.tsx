@@ -135,9 +135,9 @@ export const GoogleBook: React.FC<{ book : BookModel }> = (props) => {
                     </div>
                 </div>  
                 <div className="col-md-4 d-flex justify-content-center align-items-center">
-                    <div className='col-md-3 mb-3'>
-                                <label className='form-label'> Category</label>
-                                <button className='form-control btn btn-secondary dropdown-toggle' type='button' 
+                    <div className='col-md-3 mb-3 me-auto'>
+                                <label className='form-label text-danger'> Select Category *</label>
+                                <button className='form-control btn btn-secondary dropdown-toggle custom-form' type='button' 
                                     id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'>
                                         {category}
                                 </button>

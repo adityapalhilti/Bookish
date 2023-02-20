@@ -28,10 +28,6 @@ export const Login=()=>{
     window.location.reload();
   };
 
-  if(!localStorage.getItem("token"))
-    {
-        <Redirect to="/login"/>
-    }
 
     return(
       <>

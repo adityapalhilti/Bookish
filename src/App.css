@@ -87,6 +87,10 @@ background-color: #D2051E ;
   font-weight: 800;
 }
 
+.custom-form{
+  width:fit-content;
+}
+
 label {
   font-size: 14px;
   font-weight: 600;

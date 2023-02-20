@@ -25,10 +25,12 @@ const GoogleBooksSlice = createSlice({
 export const fetchGoogleBooks=(search: String)=> async (dispatch: (arg0: { payload: any; type: "googlebooks/setGoogleBooks"; }) => void) =>{
     try {
         const response= await GetGoogleBooks(search);
-        console.log(response)
+        
         dispatch(setGoogleBooks(response));
     }
-    catch(e){}
+    catch(e){
+        
+    }
 }
 export const showgoogleBooks = (state: { googlebooks: { googlebooks: any; }; }) => state.googlebooks.googlebooks;
 export const { setGoogleBooks } = GoogleBooksSlice.actions
