@@ -12,20 +12,26 @@ export const Login=()=>{
   
   const login = async (event: React.FormEvent) => {
     
-
+    console.log("Inside Login")
     event.preventDefault();
-    const response = await axios(`${process.env.REACT_APP_HOST}/login`, {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      data: JSON.stringify({ userName:username, password }),
-    });
-    
-    localStorage.setItem('token',response.data.token);
+    try {
+      const response = await axios(`${process.env.REACT_APP_HOST}/login`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        data: JSON.stringify({ userName:username, password }),
+      });
+      localStorage.setItem('token',response.data.token);
     localStorage.setItem('username',username);
 
     setActive(true);
-    
+    if(response.status==200){
     window.location.reload();
+    }
+    } catch (e) {
+      alert('Invalid credentials!');
+    }
+    
+    
   };
 
 
