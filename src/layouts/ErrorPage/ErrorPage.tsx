@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export const ErrorPage = () =>{
       
 
 
     return(
+        localStorage.getItem("token")?
+        
         <div className="container my-4">
         <div className="row p-4 align items-center border shadow-lg">
             <div className="col-lg-7 p-3">
@@ -26,8 +28,11 @@ export const ErrorPage = () =>{
 
             </div>
         </div>
+        
 
     </div>
+    :
+    <Redirect to="/login"/>
     );
 
 }
